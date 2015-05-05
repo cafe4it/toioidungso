@@ -1,0 +1,28 @@
+<template name="admin_user_list">
+    <div class="row">
+        <div class="col-md-12">
+            <div class="table-responsive">
+                <table class="table table-bordered">
+                    <thead>
+                        <th></th>
+                        <th>Tên</th>
+                        <th>Email</th>
+                        <th>Quyền hạn</th>
+                        <th></th>
+                    </thead>
+                    <tbody>
+                        {{#each users}}
+                        <tr>
+                            <td><img src="{{profile.picture.data.url}}" alt="avatar" width="64" height="64"/></td>
+                            <td>{{profile.name}}</td>
+                            <td>{{emails.[0].address}}</td>
+                            <td>{{roles}}</td>
+                            <td></td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</template>

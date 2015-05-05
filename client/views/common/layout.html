@@ -1,0 +1,97 @@
+<template name="defaultLayout">
+{{#if currentUser}}
+    <div class="container">
+        {{> header}}
+        {{> yield}}
+        {{> footer}}
+    </div>
+{{/if}}
+</template>
+
+<template name="adminLayout">
+{{#if isInRole 'admin'}}
+    <div class="container-fluid">
+        {{> header}}
+        {{> yield}}
+        {{> footer}}
+    </div>
+{{/if}}
+</template>
+
+<template name="header">
+    <div class="header clearfix">
+        <nav>
+            <ul class="nav nav-pills pull-right">
+                <li role="presentation" class="{{isActive 'home'}}"><a href="/">Trang chủ</a></li>
+                <li role="presentation" class="{{isActive 'challenge.create'}}"><a href="{{pathFor route='challenge.create'}}">Thách thức bản thân</a></li>
+                <li role="presentation" class="{{isActive 'contact'}}"><a href="/contact">Người thật việc thật</a></li>
+                {{#if isInRole 'admin'}}
+                    <li role="presentation" class="dropdown {{isActive 'admin'}}">
+                        <a id="dLabel" href="#" data-target="#" data-toggle="dropdown" aria-haspopup="true" role="button" aria-expanded="false">Quản trị <span class="caret"></span></a>
+                        <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+                            <li class="{{isActive 'admin_user_list'}}"><a href="/admin/user">Quản lý Users</a></li>
+                        </ul>
+                    </li>
+                {{/if}}
+            </ul>
+        </nav>
+        <h3 class="text-muted">Tôi ơi, ĐỪNG SỢ!</h3>
+    </div>
+    {{#if fbMe}}
+    <div class="row">
+        <div class="col-xs-12 text-right">
+            <strong>Xin chào, {{fbMe.name}}</strong> [<a id="btnSignOut" href="#"><i class="fa fa-sign-out"></i> Thoát</a>]
+        </div>
+    </div>
+    {{/if}}
+</template>
+
+<template name="footer">
+    <footer class="footer">
+        <p>toioidungso.org &copy; {{year}}</p>
+    </footer>
+</template>
+
+<template name="loading">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-12">
+                <img src="/images/loading.gif" alt="loading...."/>
+                <br/>
+                <h3><span class="label label-info">Đang nạp tài khoản người dùng...</span></h3>
+            </div>
+        </div>
+        {{#if ifInternetDown}}
+        <div class="row">
+            <div class="col-xs-12">
+                <button id="btnRefreshPage" class="btn btn-success">
+                    <i class="fa fa-refresh"></i>
+                    Tải lại ứng dụng!
+                </button>
+            </div>
+        </div>
+        {{/if}}
+    </div>
+</template>
+
+<template name="loading_data">
+    <div class="row">
+        <div class="col-xs-12 text-center">
+            <img src="/images/loading.gif" alt="loading...."/>
+            <br/>
+            <h3><span class="label label-info">Đang nạp dữ liệu...Xin chờ...</span></h3>
+        </div>
+    </div>
+</template>
+
+<template name="sign_out">
+    <div class="container text-center">
+        <div class="row">
+            <div class="col-xs-offset-4">
+                <img width="300" src="/images/LogoSUNRISEVIETNAM_chuan_512.png" alt="LogoSUNRISEVIETNAM_chuan_512.png"/><br/>
+                <div class="well"><h3 class="text-center">Xin hẹn gặp lại lần sau.</h3></div>
+                <button id="btnLoginAgain" class="btn btn-success"><i class="fa fa-sign-in"></i> Đăng nhập lại</button>
+            </div>
+        </div>
+    </div>
+</template>

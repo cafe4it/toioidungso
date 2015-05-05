@@ -1,0 +1,47 @@
+<template name="survey_detail">
+    {{#if survey}}
+        <div class="row">
+            <div class="col-xs-12">
+                <div class="well text-center">
+                    <h2>{{{survey.title}}}</h2>
+                    <p>{{{survey.description}}}</p>
+                </div>
+            </div>
+        </div>
+        {{#if survey.hasLotto}}
+            {{#if survey.showThankYou}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well text-center">
+                            <span class="lotto">Mã số bốc thăm của bạn là : <span class="label label-primary">{{lottoCode}}</span></span>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well text-center">
+                            <h1><span class="label label-success">{{survey.thankYou}}</span></h1>
+                        </div>
+                    </div>
+                </div>
+            {{else}}
+                <div class="row">
+                    <div class="col-xs-12">
+                        <div class="well">
+                            <span class="lotto">Mã số bốc thăm của bạn là : <span class="label label-primary">{{lottoCode}}</span>. Điền vào Form bên dưới.</span>
+                        </div>
+                    </div>
+                </div>
+            {{/if}}
+        {{/if}}
+        {{#if survey.isShowForm}}
+            <div class="row">
+                <div class="col-xs-12">
+                    <div id="content">
+                        <iframe id="myIFrame" src="{{survey.googleFormSrc}}" width="700" height="800" frameborder="0" marginheight="0" marginwidth="0">Đang tải...</iframe>
+                    </div>
+                </div>
+            </div>
+        {{/if}}
+    {{/if}}
+</template>
