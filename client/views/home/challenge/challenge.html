@@ -1,7 +1,39 @@
-<template name="challenge_create">
+<template name="challenge_add">
     <div class="row">
-        <div class="col-xs-12 col-md-6">
-            Tao thach thuc
+        <div class="col-xs-12 col-md-12">
+            {{#autoForm collection="Challenges" id="insertChallengeForm" type="insert"}}
+                <fieldset>
+                    <legend>Tạo thử thách</legend>
+                    {{> afQuickField name='title'}}
+                    {{> afQuickField name='description' rows=10}}
+                </fieldset>
+                <button type="submit" class="btn btn-primary">
+                    <i class="fa fa-save"></i>
+                    Lưu lại
+                </button>
+                &nbsp;
+                <button type="reset" class="btn btn-default">
+                    <i class="fa fa-eraser"></i>
+                    Làm lại
+                </button>
+            {{/autoForm}}
+        </div>
+    </div>
+</template>
+
+<template name="challenge_detail">
+    <div class="row">
+        <div class="col-md-12">
+        {{#with challenge}}
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <img src="{{challengeUser.profile.picture.data.url}}" alt="avatar {{challengeUser.profile.name}}" width="64" height="64"/> {{challengeUser.profile.name}}
+                </div>
+                <div class="panel-body">
+
+                </div>
+            </div>
+        {{/with}}
         </div>
     </div>
 </template>
